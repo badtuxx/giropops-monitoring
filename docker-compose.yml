@@ -1,0 +1,76 @@
+version: '3.3'
+
+services:
+
+  prometheus:
+    image: linuxtips/prometheus_alpine:1.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - backend
+    ports:
+      - 9090:9090
+
+  node-exporter:
+    image: linuxtips/node-exporter_alpine:1.0
+    volumes:
+      - /proc:/usr/proc
+      - /sys:/usr/sys
+      - /:/rootfs
+    deploy:
+      mode: global
+    networks:
+      - backend
+    ports:
+      - 9100:9100
+
+  alertmanager:
+    image: linuxtips/alertmanager_alpine:1.0
+    volumes:
+      - ./conf/alertmanager/:/etc/alertmanager/
+    networks:
+      - backend
+    ports:
+      - 9093:9093
+
+  cadvisor:
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - backend
+    deploy:
+      mode: global
+    ports:
+      - 8080:8080
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - grafana.config
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 3000:3000
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+    prometheus_data:
+    grafana_data:
