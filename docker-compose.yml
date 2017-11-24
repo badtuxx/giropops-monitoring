@@ -57,6 +57,7 @@ services:
       - prometheus
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./conf/grafana/grafana.db:/var/lib/grafana/grafana.db
     env_file:
       - grafana.config
     networks:
