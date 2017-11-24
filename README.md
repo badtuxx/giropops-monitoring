@@ -92,6 +92,14 @@ To access Prometheus Node_exporter metrics on browser:
 http://YOUR_IP:9100/metrics
 ```
 
+Test if your alerts are ok:
+```
+# docker service rm giropops_node-exporter
+
+Wait some seconds and you will see the integration works fine! Prometheus alerting the AlertManager that alert the Slack that shows it to you! It's so easy and that simple! :D
+```
+
+
 Of course, create new alerts on Prometheus:
 ```
 # vim conf/prometheus/alert.rules
