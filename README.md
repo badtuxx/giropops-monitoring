@@ -20,7 +20,7 @@ receivers:
           - send_resolved: true
             username: 'YOUR USERNAME'
             channel: '#YOURCHANNEL'
-            api_url: 'INCOMMING WEBHOOK'
+            api_url: 'INCOMING WEBHOOK'
 ```
 
 Install Netdata:
