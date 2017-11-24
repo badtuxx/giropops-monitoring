@@ -14,6 +14,7 @@ services:
 
   node-exporter:
     image: linuxtips/node-exporter_alpine:1.0
+    hostname: '{{.Node.ID}}'
     volumes:
       - /proc:/usr/proc
       - /sys:/usr/sys
