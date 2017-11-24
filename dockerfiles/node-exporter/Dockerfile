@@ -2,10 +2,11 @@ FROM golang AS building
 LABEL maintainer="jeferson@linuxtips.com.br"
 LABEL version="1.0"
 
-RUN go get github.com/prometheus/node_exporter \
-    && cd /go/src/github.com/prometheus/node_exporter/ \
-    && make \
-    && cp node_exporter /tmp/
+ENV exporter_version node_exporter-0.15.1.linux-amd64
+
+RUN curl -LO https://github.com/prometheus/node_exporter/releases/download/v0.15.1/${exporter_version}.tar.gz \
+    && tar -xvzf ${exporter_version}.tar.gz  \
+    && cp ${exporter_version}/node_exporter /tmp/
 
 FROM alpine
 
