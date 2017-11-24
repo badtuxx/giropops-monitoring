@@ -77,6 +77,9 @@ To access Grafana interface on browser:
 http://YOUR_IP:3000
 user: admin
 passwd: giropops
+
+Get fun, access the dashboards! ;)
+
 ```
 
 To access Netdata interface on browser:
