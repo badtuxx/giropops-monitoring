@@ -1,4 +1,4 @@
-# giropops-monitoring
+# giropops-monitoring-BETA
 Full stack tools for monitoring containers and other stuff. ;)
 
 # Howto
