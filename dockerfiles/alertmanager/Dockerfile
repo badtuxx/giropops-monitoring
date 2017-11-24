@@ -1,4 +1,6 @@
 FROM golang AS building
+LABEL maintainer="jeferson@linuxtips.com.br"
+LABEL version="1.0"
 
 WORKDIR /go/src/github.com/prometheus
 

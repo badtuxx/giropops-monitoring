@@ -1,4 +1,6 @@
 FROM golang AS building
+LABEL maintainer="jeferson@linuxtips.com.br"
+LABEL version="1.0"
 
 RUN go get github.com/prometheus/node_exporter \
     && cd /go/src/github.com/prometheus/node_exporter/ \
