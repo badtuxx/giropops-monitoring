@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   prometheus:
-    image: linuxtips/prometheus_alpine:1.0
+    image: linuxtips/prometheus_alpine
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -13,7 +13,7 @@ services:
       - 9090:9090
 
   node-exporter:
-    image: linuxtips/node-exporter_alpine:1.0
+    image: linuxtips/node-exporter_alpine
     hostname: '{{.Node.ID}}'
     volumes:
       - /proc:/usr/proc
@@ -27,7 +27,7 @@ services:
       - 9100:9100
 
   alertmanager:
-    image: linuxtips/alertmanager_alpine:1.0
+    image: linuxtips/alertmanager_alpine
     volumes:
       - ./conf/alertmanager/:/etc/alertmanager/
     networks:
