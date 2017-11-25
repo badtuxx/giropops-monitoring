@@ -2,6 +2,8 @@
 Full stack tools for monitoring containers and other stuff. ;)
 - Netdata
 - Prometheus
+- AlertManager
+- Slack
 - Docker
 - cAdvisor
 - Grafana
