@@ -12,7 +12,7 @@ Full stack tools for monitoring containers and other stuff. ;)
 
 # Install Demonstration
 
-[![demo](https://asciinema.org/a/113463.png)](https://asciinema.org/a/113463?autoplay=1)
+[![demo](https://asciinema.org/a/P1LJ9GYTVamd9AwjJmVWLErqD.png)](https://asciinema.org/a/P1LJ9GYTVamd9AwjJmVWLErqD)
 
 
 # Howto
