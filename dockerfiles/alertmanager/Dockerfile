@@ -1,23 +1,21 @@
-FROM golang AS building
+FROM alpine
+
 LABEL maintainer="jeferson@linuxtips.com.br"
 LABEL version="1.0"
 
-WORKDIR /go/src/github.com/prometheus
+ENV alertmanager_version 0.11.0
 
-RUN git clone https://github.com/prometheus/alertmanager.git \
-    && cd alertmanager \
-    && make build \
-    && cp alertmanager /tmp
+WORKDIR /alertmanager
 
-
-FROM alpine
-
-COPY --from=building /tmp/alertmanager /usr/local/bin/
+RUN apk --no-cache add curl \
+    && curl -LO https://github.com/prometheus/alertmanager/releases/download/v${alertmanager_version}/alertmanager-${alertmanager_version}.linux-amd64.tar.gz \
+    && tar -xvzf alertmanager-${alertmanager_version}.linux-amd64.tar.gz \
+    && cp alertmanager-${alertmanager_version}.linux-amd64/alertmanager /bin \
+    && rm -rf alertmanager-${alertmanager_version}.linux-amd64
 
 VOLUME /alertmanager
 VOLUME /etc/alertmanager
 ADD conf/config.yml /etc/alertmanager/
-ENTRYPOINT alertmanager -config.file=/etc/alertmanager/config.yml -storage.path=/alertmanager
+ENTRYPOINT ["alertmanager"] 
+CMD ["-config.file=/etc/alertmanager/config.yml", "-storage.path=/alertmanager"]
 EXPOSE 9093
-
-
