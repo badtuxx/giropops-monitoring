@@ -1,5 +1,11 @@
 # giropops-monitoring-BETA
 Full stack tools for monitoring containers and other stuff. ;)
+- Netdata
+- Prometheus
+- Docker
+- cAdvisor
+- Grafana
+- Node_Exporter
 
 # Howto
 First of all, clone the giropopos-monitoring repo:
