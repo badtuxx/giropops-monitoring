@@ -9,6 +9,12 @@ Full stack tools for monitoring containers and other stuff. ;)
 - Grafana
 - Node_Exporter
 
+
+# Install Demonstration
+
+[![demo](https://asciinema.org/a/113463.png)](https://asciinema.org/a/113463?autoplay=1)
+
+
 # Howto
 First of all, clone the giropopos-monitoring repo:
 ```
