@@ -92,6 +92,10 @@ http://YOUR_IP:3000
 user: admin
 passwd: giropops
 
+To add plugs edit file giropops-monitoring/grafana.config
+GF_INSTALL_PLUGINS=plug1,plug2
+Current plugs grafana-clock-panel,grafana-piechart-panel,camptocamp-prometheus-alertmanager-datasource,vonage-status-panel
+
 Get fun, access the dashboards! ;)
 
 ```
