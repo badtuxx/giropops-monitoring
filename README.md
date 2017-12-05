@@ -58,14 +58,19 @@ Setting Netdata Exporter configuration in Prometheus:
 
 ```
 
+First, run Docker Swarm:
+```
+$ docker swarm init # You can use make init too.
+```
+
 Execute deploy to create the stack of giropops-monitoring:
 ```
-# docker stack deploy -c docker-compose.yml giropops
+$ docker stack deploy -c docker-compose.yml giropops # You can use make start too.
 ```
 
 Verify if services are ok:
 ```
-# docker service ls
+$ docker service ls # You can use make service too.
 
 ID                  NAME                     MODE                REPLICAS            IMAGE                                   PORTS
 xypw5n1nri9a        giropops_alertmanager    replicated          1/1                 linuxtips/alertmanager_alpine:dev       *:9093->9093/tcp
