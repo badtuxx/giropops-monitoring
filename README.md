@@ -56,16 +56,22 @@ Setting Netdata Exporter configuration in Prometheus:
 
 ```
 
-## Deploy Stack with Docker
+
+## Deploy Stack with Docker Swarm
+
+First, run Docker Swarm:
+```
+$ docker swarm init # You can use make init too.
+```
 
 Execute deploy to create the stack of giropops-monitoring:
 ```
-# docker stack deploy -c docker-compose.yml giropops
+$ docker stack deploy -c docker-compose.yml giropops # You can use make start too.
 ```
 
 Verify if services are ok:
 ```
-# docker service ls
+$ docker service ls # You can use make service too.
 
 ID                  NAME                     MODE                REPLICAS            IMAGE                                   PORTS
 xypw5n1nri9a        giropops_alertmanager    replicated          1/1                 linuxtips/alertmanager_alpine:dev       *:9093->9093/tcp
@@ -93,6 +99,12 @@ To access Grafana interface on browser:
 http://YOUR_IP:3000
 user: admin
 passwd: giropops
+
+To add plugs edit file giropops-monitoring/grafana.config
+GF_INSTALL_PLUGINS=plug1,plug2
+Current plugs grafana-clock-panel,grafana-piechart-panel,camptocamp-prometheus-alertmanager-datasource,vonage-status-panel
+
+Get fun, access the dashboards! ;)
 
 ```
 Get fun, access the dashboards! ;)
