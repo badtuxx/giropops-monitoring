@@ -56,6 +56,8 @@ Setting Netdata Exporter configuration in Prometheus:
 
 ```
 
+## Deploy Stack with Docker
+
 Execute deploy to create the stack of giropops-monitoring:
 ```
 # docker stack deploy -c docker-compose.yml giropops
@@ -74,6 +76,8 @@ vpqw3md2lcbr        giropops_prometheus      replicated          1/1            
 
 ```
 
+## Access Services in Browser
+
 To access Prometheus interface on browser:
 ```
 http://YOUR_IP:9090
@@ -90,9 +94,8 @@ http://YOUR_IP:3000
 user: admin
 passwd: giropops
 
-Get fun, access the dashboards! ;)
-
 ```
+Get fun, access the dashboards! ;)
 
 To access Netdata interface on browser:
 ```
@@ -103,6 +106,14 @@ To access Prometheus Node_exporter metrics on browser:
 ```
 http://YOUR_IP:9100/metrics
 ```
+
+To access RocketChat interface on browser:  
+```
+http://YOUR_IP:3080
+> First to register becomes admin
+```
+Remember that RocketChat endpoints and payloads are identical to Slack's, so if you wanna set Grafana alerts, just select a slack alert and give it a RocketChat incoming webhook URL, with no script needed.
+
 
 Test if your alerts are ok:
 ```
@@ -116,6 +127,7 @@ Of course, create new alerts on Prometheus:
 ```
 # vim conf/prometheus/alert.rules
 ```
+
 
 # Ahhhh, Help us to improve it!
 # Thanks! #VAIIII
