@@ -23,8 +23,8 @@ First of all, clone the giropopos-monitoring repo:
 
 ## Install Docker and create Swarm cluster
 ```
-$ curl -fsSL https://get.docker.com | sh
-$ docker swarm init
+# curl -fsSL https://get.docker.com | sh
+# docker swarm init
 
 ```
 
@@ -55,7 +55,7 @@ Setting Netdata Exporter configuration in Prometheus:
 1) Deploy giropops stack, only to get the WebHook
 
 ```
-$ docker stack deploy -c docker-compose.yml giropops
+# docker stack deploy -c docker-compose.yml giropops
 ```
 
 2) Access YOUR_IP:3080 and create your account
@@ -72,7 +72,7 @@ $ docker stack deploy -c docker-compose.yml giropops
 
 8) Remove giropops stack
 ```
-$ docker stack rm giropops
+# docker stack rm giropops
 ```
 [Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
 
@@ -101,7 +101,7 @@ receivers:
 
 Execute deploy to create the stack of giropops-monitoring:
 ```
-$ docker stack deploy -c docker-compose.yml giropops
+# docker stack deploy -c docker-compose.yml giropops
 
 Creating network giropops_backend
 Creating network giropops_frontend
@@ -119,7 +119,7 @@ Creating service giropops_mongo-init-replica
 
 Verify if services are ok:
 ```
-$ docker service ls
+# docker service ls
 
 ID              NAME                          MODE         REPLICAS  IMAGE                                  PORTS
 2j5vievon95j    giropops_alertmanager         replicated   1/1       linuxtips/alertmanager_alpine:latest   *:9093->9093/tcp
