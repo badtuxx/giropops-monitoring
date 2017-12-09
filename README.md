@@ -59,6 +59,24 @@ Setting Netdata Exporter configuration in Prometheus:
 [Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
 
 
+## Integration between Rocket.Chat and AlertManager
+
+```
+# vim conf/alertmanager/config.yml
+
+route:
+    repeat_interval: 30m
+    group_interval: 30m
+    receiver: 'rocketchat'
+
+receivers:
+    - name: 'rocketchat'
+      webhook_configs:
+          - send_resolved: false
+            url: '${WEBHOOK_URL}'
+
+```
+
 
 ## Deploy Stack with Docker Swarm
 
