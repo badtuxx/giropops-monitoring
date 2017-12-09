@@ -25,7 +25,6 @@ First of all, clone the giropopos-monitoring repo:
 ```
 # curl -fsSL https://get.docker.com | sh
 # docker swarm init
-
 ```
 
 ## Install Netdata:
@@ -45,8 +44,6 @@ Setting Netdata Exporter configuration in Prometheus:
     scrape_interval: 5s
     static_configs:
          - targets: ['YOUR_IP:19999']
-
-
 ```
 
 
@@ -93,7 +90,6 @@ receivers:
           - send_resolved: false
             # copy below the WEBHOOK that you create before
             url: '${WEBHOOK_URL}'
-
 ```
 
 
@@ -114,7 +110,6 @@ Creating service giropops_grafana
 Creating service giropops_rocketchat
 Creating service giropops_mongo
 Creating service giropops_mongo-init-replica
-
 ```
 
 Verify if services are ok:
@@ -130,7 +125,6 @@ t8vnb7xuyfa8    giropops_mongo-init-replica   replicated   0/1       mongo:3.2
 usr0jy4jquns    giropops_node-exporter        global       1/1       linuxtips/node-exporter_alpine:latest  *:9100->9100/tcp
 zc3qza0bxys7    giropops_prometheus           replicated   1/1       linuxtips/prometheus_alpine:latest     *:9090->9090/tcp
 7bgnm0poxbwj    giropops_rocketchat           replicated   1/1       rocketchat/rocket.chat:latest          *:3080->3080/tcp
-
 ```
 PS: Don't worry why giropops_mongo-init-replica service is down, it only executes one time to initialize the replica set. It will not stay running.
 
@@ -156,9 +150,6 @@ passwd: giropops
 To add plugs edit file giropops-monitoring/grafana.config
 GF_INSTALL_PLUGINS=plug1,plug2
 Current plugs grafana-clock-panel,grafana-piechart-panel,camptocamp-prometheus-alertmanager-datasource,vonage-status-panel
-
-Get fun, access the dashboards! ;)
-
 ```
 Get fun, access the dashboards! ;)
 
