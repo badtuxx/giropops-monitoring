@@ -21,23 +21,21 @@ First of all, clone the giropopos-monitoring repo:
 # git clone git@github.com:badtuxx/giropops-monitoring.git
 ```
 
-Change the information about your Slack account and what room you will send the alerts:
-```
-# vim conf/alertmanager/config.yml
+## Rocket.Chat
 
-route:
-    receiver: 'slack'
+1) Login as admin user and go to: Administration => Integrations => New Integration => Incoming WebHook
 
-receivers:
-    - name: 'slack'
-      slack_configs:
-          - send_resolved: true
-            username: 'YOUR USERNAME'
-            channel: '#YOURCHANNEL'
-            api_url: 'INCOMING WEBHOOK'
-```
+2) Set "Enabled" and "Script Enabled" to "True"
 
-Install Netdata:
+3) Set all channel, icons, etc. as you need
+
+3) Paste contents of [rocketchat/incoming-webhook.js](rocketchat/incoming-webhook.js) into Script field.
+
+4) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to Alertmanager.
+
+[Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
+
+## Install Netdata:
 ```
 # bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 ```
@@ -57,6 +55,9 @@ Setting Netdata Exporter configuration in Prometheus:
 
 
 ```
+
+
+## Deploy Stack with Docker Swarm
 
 First, run Docker Swarm:
 ```
@@ -81,6 +82,8 @@ vpqw3md2lcbr        giropops_prometheus      replicated          1/1            
 
 ```
 
+## Access Services in Browser
+
 To access Prometheus interface on browser:
 ```
 http://YOUR_IP:9090
@@ -104,6 +107,7 @@ Current plugs grafana-clock-panel,grafana-piechart-panel,camptocamp-prometheus-a
 Get fun, access the dashboards! ;)
 
 ```
+Get fun, access the dashboards! ;)
 
 To access Netdata interface on browser:
 ```
@@ -114,6 +118,14 @@ To access Prometheus Node_exporter metrics on browser:
 ```
 http://YOUR_IP:9100/metrics
 ```
+
+To access RocketChat interface on browser:  
+```
+http://YOUR_IP:3080
+> First to register becomes admin
+```
+Remember that RocketChat endpoints and payloads are identical to Slack's, so if you wanna set Grafana alerts, just select a slack alert and give it a RocketChat incoming webhook URL, with no script needed.
+
 
 Test if your alerts are ok:
 ```
@@ -128,5 +140,6 @@ Of course, create new alerts on Prometheus:
 # vim conf/prometheus/alert.rules
 ```
 
-# Ahhhh, Help us to improve it! 
+
+# Ahhhh, Help us to improve it!
 # Thanks! #VAIIII

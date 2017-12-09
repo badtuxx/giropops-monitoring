@@ -1,10 +1,10 @@
 route:
-    receiver: 'slack'
+    repeat_interval: 30m
+    group_interval: 30m
+    receiver: 'rocketchat'
 
 receivers:
-    - name: 'slack'
-      slack_configs:
-          - send_resolved: true
-            username: 'YOUR USERNAME'
-            channel: '#YOURCHANNEL'
-            api_url: 'INCOMMING WEBHOOK'
+    - name: 'rocketchat'
+      webhook_configs:
+          - send_resolved: false
+            url: '${WEBHOOK_URL}'
