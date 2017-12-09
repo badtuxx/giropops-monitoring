@@ -69,7 +69,6 @@ services:
 # If you already has a RocketChat instance running, just comment the code of rocketchat, mongo and mongo-init-replica services bellow
   rocketchat:
     image: rocketchat/rocket.chat:latest
-    restart: unless-stopped
     volumes:
       - rocket_uploads:/app/uploads
     environment:
@@ -87,7 +86,6 @@ services:
 
   mongo:
     image: mongo:3.2
-    restart: unless-stopped
     volumes:
      - mongodb_data:/data/db
      #- ./data/dump:/dump
