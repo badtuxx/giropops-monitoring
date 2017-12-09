@@ -21,6 +21,12 @@ First of all, clone the giropopos-monitoring repo:
 # git clone git@github.com:badtuxx/giropops-monitoring.git
 ```
 
+## Install Docker and create Swarm cluster
+```
+$ curl -fsSL https://get.docker.com | sh
+$ docker swarm init
+
+```
 
 ## Install Netdata:
 ```
@@ -44,18 +50,30 @@ Setting Netdata Exporter configuration in Prometheus:
 ```
 
 
-## Rocket.Chat
+## Get Rocket.Chat Incoming WebHook 
 
-1) Login as admin user and go to: Administration => Integrations => New Integration => Incoming WebHook
+1) Deploy giropops stack, only to get the WebHook
 
-2) Set "Enabled" and "Script Enabled" to "True"
+```
+$ docker stack deploy -c docker-compose.yml giropops
+```
 
-3) Set all channel, icons, etc. as you need
+2) Access YOUR_IP:3080 and create your account
 
-3) Paste contents of [rocketchat/incoming-webhook.js](conf/rocketchat/incoming-webhook.js) into Script field.
+3) Login with your user and go to: Administration => Integrations => New Integration => Incoming WebHook
 
-4) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to Alertmanager.
+4) Set "Enabled" and "Script Enabled" to "True"
 
+5) Set all channel, icons, etc. as you need
+
+6) Paste contents of [rocketchat/incoming-webhook.js](conf/rocketchat/incoming-webhook.js) into Script field.
+
+7) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to "Integration between Rocket.Chat and AlertManager" section.
+
+8) Remove giropops stack
+```
+$ docker stack rm giropops
+```
 [Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
 
 
@@ -73,33 +91,45 @@ receivers:
     - name: 'rocketchat'
       webhook_configs:
           - send_resolved: false
-            url: '${WEBHOOK_URL}'
+            # copy below the WEBHOOK that you create before
+            url: '${WEBHOOK_URL}'
 
 ```
 
 
 ## Deploy Stack with Docker Swarm
 
-First, run Docker Swarm:
-```
-$ docker swarm init # You can use make init too.
-```
-
 Execute deploy to create the stack of giropops-monitoring:
 ```
-$ docker stack deploy -c docker-compose.yml giropops # You can use make start too.
+$ docker stack deploy -c docker-compose.yml giropops
+
+Creating network giropops_backend
+Creating network giropops_frontend
+Creating network giropops_default
+Creating service giropops_prometheus
+Creating service giropops_node-exporter
+Creating service giropops_alertmanager
+Creating service giropops_cadvisor
+Creating service giropops_grafana
+Creating service giropops_rocketchat
+Creating service giropops_mongo
+Creating service giropops_mongo-init-replica
+
 ```
 
 Verify if services are ok:
 ```
-$ docker service ls # You can use make service too.
+$ docker service ls
 
-ID                  NAME                     MODE                REPLICAS            IMAGE                                   PORTS
-xypw5n1nri9a        giropops_alertmanager    replicated          1/1                 linuxtips/alertmanager_alpine:dev       *:9093->9093/tcp
-udd7ulvf7dww        giropops_cadvisor        global              1/1                 google/cadvisor:latest                  *:8080->8080/tcp
-vpo9j4pdnj36        giropops_grafana         replicated          1/1                 grafana/grafana:latest                  *:3000->3000/tcp
-0sgbwny6gpbl        giropops_node-exporter   global              1/1                 linuxtips/node-exporter_alpine:latest   *:9100->9100/tcp
-vpqw3md2lcbr        giropops_prometheus      replicated          1/1                 linuxtips/prometheus_alpine:dev         *:9090->9090/tcp
+ID              NAME                          MODE         REPLICAS  IMAGE                                  PORTS
+2j5vievon95j    giropops_alertmanager         replicated   1/1       linuxtips/alertmanager_alpine:latest   *:9093->9093/tcp
+y1kinszpqzpg    giropops_cadvisor             global       1/1       google/cadvisor:latest                 *:8080->8080/tcp
+jol20u8pahlp    giropops_grafana              replicated   1/1       grafana/grafana:latest                 *:3000->3000/tcp
+t3635s4xh5cp    giropops_mongo                replicated   1/1       mongo:3.2
+t8vnb7xuyfa8    giropops_mongo-init-replica   replicated   0/1       mongo:3.2
+usr0jy4jquns    giropops_node-exporter        global       1/1       linuxtips/node-exporter_alpine:latest  *:9100->9100/tcp
+zc3qza0bxys7    giropops_prometheus           replicated   1/1       linuxtips/prometheus_alpine:latest     *:9090->9090/tcp
+7bgnm0poxbwj    giropops_rocketchat           replicated   1/1       rocketchat/rocket.chat:latest          *:3080->3080/tcp
 
 ```
 
