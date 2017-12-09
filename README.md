@@ -1,9 +1,9 @@
-# giropops-monitoring-BETA
+# giropops-monitoring
 Full stack tools for monitoring containers and other stuff. ;)
 - Netdata
 - Prometheus
 - AlertManager
-- Slack
+- Rocket.Chat
 - Docker
 - cAdvisor
 - Grafana
@@ -21,19 +21,6 @@ First of all, clone the giropopos-monitoring repo:
 # git clone git@github.com:badtuxx/giropops-monitoring.git
 ```
 
-## Rocket.Chat
-
-1) Login as admin user and go to: Administration => Integrations => New Integration => Incoming WebHook
-
-2) Set "Enabled" and "Script Enabled" to "True"
-
-3) Set all channel, icons, etc. as you need
-
-3) Paste contents of [rocketchat/incoming-webhook.js](rocketchat/incoming-webhook.js) into Script field.
-
-4) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to Alertmanager.
-
-[Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
 
 ## Install Netdata:
 ```
@@ -55,6 +42,22 @@ Setting Netdata Exporter configuration in Prometheus:
 
 
 ```
+
+
+## Rocket.Chat
+
+1) Login as admin user and go to: Administration => Integrations => New Integration => Incoming WebHook
+
+2) Set "Enabled" and "Script Enabled" to "True"
+
+3) Set all channel, icons, etc. as you need
+
+3) Paste contents of [rocketchat/incoming-webhook.js](rocketchat/incoming-webhook.js) into Script field.
+
+4) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to Alertmanager.
+
+[Rocket.Chat Docs](https://rocket.chat/docs/administrator-guides/integrations/)
+
 
 
 ## Deploy Stack with Docker Swarm
