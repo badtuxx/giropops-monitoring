@@ -52,7 +52,7 @@ Setting Netdata Exporter configuration in Prometheus:
 
 3) Set all channel, icons, etc. as you need
 
-3) Paste contents of [rocketchat/incoming-webhook.js](rocketchat/incoming-webhook.js) into Script field.
+3) Paste contents of [rocketchat/incoming-webhook.js](conf/rocketchat/incoming-webhook.js) into Script field.
 
 4) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to Alertmanager.
 
