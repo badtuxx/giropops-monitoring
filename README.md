@@ -18,7 +18,7 @@ Full stack tools for monitoring containers and other stuff. ;)
 # Howto
 First of all, clone the giropopos-monitoring repo:
 ```
-# git clone git@github.com:badtuxx/giropops-monitoring.git
+# git clone https://github.com/badtuxx/giropops-monitoring.git
 ```
 
 ## Install Docker and create Swarm cluster
