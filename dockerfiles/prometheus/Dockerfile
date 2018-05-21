@@ -5,7 +5,8 @@ LABEL version="1.0"
 
 ARG PROMETHEUS_VERSION=2.0.0
 
-RUN adduser -s /bin/false -D -H prometheus && \
+RUN set -xe && \
+    adduser -s /bin/false -D -H prometheus && \
     adduser -s /bin/false -D -H node_exporter && \
     wget https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz && \
     tar -xvzf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz && \
