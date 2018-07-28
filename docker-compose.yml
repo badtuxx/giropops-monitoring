@@ -65,7 +65,7 @@ services:
     ports:
       - 3000:3000
 
-# If you already has a RocketChat instance running, just comment the code of rocketchat, mongo and mongo-init-replica services bellow
+# If you already have a RocketChat instance running, just comment the code of rocketchat, mongo and mongo-init-replica services bellow
   rocketchat:
     image: rocketchat/rocket.chat:latest
     volumes:
@@ -73,13 +73,13 @@ services:
     environment:
       - PORT=3080
       - ROOT_URL=http://YOUR_IP:3080
-      - MONGO_URL=mongodb://giropops_mongo:27017/rocketchat
-      - MONGO_OPLOG_URL=mongodb://giropops_mongo:27017/local
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
 #      - MAIL_URL=smtp://user:pass@smtp.email
 #      - HTTP_PROXY=http://proxy.domain.com
 #      - HTTPS_PROXY=http://proxy.domain.com
     depends_on:
-      - giropops_mongo
+      - mongo
     ports:
       - 3080:3080
 
@@ -92,9 +92,9 @@ services:
 
   mongo-init-replica:
     image: mongo:3.2
-    command: 'mongo giropops_mongo/rocketchat --eval "rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''localhost:27017'' } ]})"'
+    command: 'mongo mongo/rocketchat --eval "rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''localhost:27017'' } ]})"'
     depends_on:
-      - giropops_mongo
+      - mongo
 
 networks:
   frontend:
