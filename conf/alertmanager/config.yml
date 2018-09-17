@@ -8,3 +8,19 @@ receivers:
       webhook_configs:
           - send_resolved: false
             url: 'INCOMING_WEBHOOK'
+
+
+### IF YOU WANT USE SLACK, UNCOMMENT THE LINES BELLOW AND COMMENT THE LINES ABOVE
+### REMEMBER, IF YOU WANT USE SLACK, YOU DON'T NEED THE MONGO AND ROCKETCHAT SERVICES, SO YOU CAN REMOVE THIS SERVICES FROM docker-compose FILE.
+### PUT YOUR INFORMATION AS USERNAME, CHANNEL AND THE INCOMMING WEBHOOK
+
+#route:
+#   receiver: 'slack'
+#
+#receivers
+#   - name: 'slack'
+#     slack_configs:
+#        - send_resolved: true
+#          username: 'YOUR USERNAME'
+#          channel: '#YOURCHANNEL'
+#          api_url: 'INCOMMING WEBHOOK'
