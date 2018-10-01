@@ -61,11 +61,11 @@ Setting Netdata Exporter configuration in Prometheus:
 
 4) Set "Enabled" and "Script Enabled" to "True"
 
-5) Set all channel, icons, etc. as you need
+5) Set all channels, icons, etc. as you need
 
 6) Paste contents of [rocketchat/incoming-webhook.js](conf/rocketchat/incoming-webhook.js) into Script field.
 
-7) Create Integration. You;ll see some values apper. Copy WebHook URL and proceed to "Integration between Rocket.Chat and AlertManager" section.
+7) Create Integration. You will see some values appear. Copy WebHook URL and proceed to "Integration between Rocket.Chat and AlertManager" section.
 
 8) Remove giropops stack
 ```
@@ -151,7 +151,7 @@ To add plugs edit file giropops-monitoring/grafana.config
 GF_INSTALL_PLUGINS=plug1,plug2
 Current plugs grafana-clock-panel,grafana-piechart-panel,camptocamp-prometheus-alertmanager-datasource,vonage-status-panel
 ```
-Get fun, access the dashboards! ;)
+Have fun, access the dashboards! ;)
 
 To access Netdata interface on browser:
 ```
