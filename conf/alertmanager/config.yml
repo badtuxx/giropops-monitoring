@@ -17,7 +17,7 @@ receivers:
 #route:
 #   receiver: 'slack'
 #
-#receivers
+#receivers:
 #   - name: 'slack'
 #     slack_configs:
 #        - send_resolved: true
