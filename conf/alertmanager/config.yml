@@ -1,23 +1,23 @@
-route:
-    repeat_interval: 30m
-    group_interval: 30m
-    receiver: 'rocketchat'
+# route:
+#     repeat_interval: 30m
+#     group_interval: 30m
+#     receiver: 'rocketchat'
 
-receivers:
-    - name: 'rocketchat'
-      webhook_configs:
-          - send_resolved: false
-            url: 'INCOMING_WEBHOOK'
+# receivers:
+#     - name: 'rocketchat'
+#       webhook_configs:
+#           - send_resolved: false
+#             url: 'INCOMING_WEBHOOK'
 
 
 ### IF YOU WANT USE SLACK, UNCOMMENT THE LINES BELLOW AND COMMENT THE LINES ABOVE
 ### REMEMBER, IF YOU WANT USE SLACK, YOU DON'T NEED THE MONGO AND ROCKETCHAT SERVICES, SO YOU CAN REMOVE THIS SERVICES FROM docker-compose FILE.
 ### PUT YOUR INFORMATION AS USERNAME, CHANNEL AND THE INCOMMING WEBHOOK
 
-#route:
+# route:
 #   receiver: 'slack'
-#
-#receivers
+
+# receivers
 #   - name: 'slack'
 #     slack_configs:
 #        - send_resolved: true

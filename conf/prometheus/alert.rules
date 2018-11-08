@@ -13,10 +13,21 @@ groups:
       description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 2 minutes."
 
   - alert: high_load
-    expr: node_load1 > 0.5
-    for: 2m
+    expr: node_load1 > 1.0
+    for: 5m
     labels:
       severity: page
     annotations:
       summary: "Instance {{ $labels.instance }} under high load"
       description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load."
+
+  - alert: low_memory
+    expr: (((node_memory_MemAvailable{instance=~"$server:.*"}) / node_memory_MemTotal{instance=~"$server:.*"}) * 100) < 10
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.instance }} under low memory"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} is under low memory load."
+
+
