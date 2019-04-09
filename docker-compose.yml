@@ -52,11 +52,11 @@ services:
       - 8080:8080
 
   grafana:
-    image: nopp/grafana_alpine
+    image: grafana/grafana
     depends_on:
       - prometheus
     volumes:
-      - ./conf/grafana/grafana.db:/grafana/data/grafana.db
+      - grafana_db:/var/lib/grafana
     env_file:
       - grafana.config
     networks:
