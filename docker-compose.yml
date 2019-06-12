@@ -102,6 +102,6 @@ networks:
 
 volumes:
     prometheus_data:
-    grafana_data:
+    grafana_db:
     rocket_uploads:
     mongodb_data:
