@@ -3,7 +3,7 @@ FROM alpine
 LABEL maintainer="jeferson@linuxtips.com.br"
 LABEL version="1.0"
 
-ARG PROMETHEUS_VERSION=2.0.0
+ARG PROMETHEUS_VERSION=2.13.0
 
 RUN set -xe && \
     adduser -s /bin/false -D -H prometheus && \

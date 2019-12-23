@@ -3,7 +3,7 @@ FROM golang AS building
 LABEL maintainer="jeferson@linuxtips.com.br"
 LABEL version="1.0"
 
-ENV exporter_version 0.15.1
+ENV exporter_version 0.18.1
 
 RUN curl -LO https://github.com/prometheus/node_exporter/releases/download/v${exporter_version}/node_exporter-${exporter_version}.linux-amd64.tar.gz \
     && tar -xvzf node_exporter-${exporter_version}.linux-amd64.tar.gz  \
