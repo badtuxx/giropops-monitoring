@@ -36,7 +36,8 @@ services:
       - 9093:9093
 
   cadvisor:
-    image: google/cadvisor
+    #image: google/cadvisor # DEPRECATED: Please use gcr.io/cadvisor/cadvisor instead.
+    image: gcr.io/cadvisor/cadvisor
     hostname: '{{.Node.ID}}'
     volumes:
       - /:/rootfs:ro
